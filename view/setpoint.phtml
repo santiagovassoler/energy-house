@@ -1,0 +1,97 @@
+<?php require("view/header.phtml");?>
+
+<?php foreach($view->dao as $sensor){ ?>
+  <?php if ($sensor->getStatus() ==1){ echo'<div class="card">';}else{echo'<div class="card dis">';} ?>
+    <h2><?php echo $sensor->getName();?></h2>
+    <div class="icon"><img class="img_svg"src="/assets/img/radiator.svg" alt="radiator"></div>
+    <?php if ($sensor->getStatus() ==1){?>
+      <div class="value"><!--add value from subscribe-->13&#8451;</div>
+      <div class="vertical"><div id="flat-slider-vertical-1"></div></div>
+
+      <form method="post" action="changeTemp.php" class="awesome-form">
+        <input type="hidden"  name="name" id="name" value="<?php echo $sensor->getName();?>"></input>
+        <input type="hidden" name="value" id="amount_field"><br>
+      </form>
+
+      <form method="post" action="switchonandoff.php">
+        <input type="image" src="/assets/img/power.svg"  id="disable" name="on" ></input>
+        <input type="hidden"  name="on" value="<?php echo $sensor->getID();?>"></input>
+      </form>
+
+    <? }else{ ?>
+      <div class="value">0&#8451;</div>
+      <div class="vertical"><div id="flat-slider-vertical-1" class="disab"></div></div>
+      <div><br></div>
+
+      <form method="post" action="switchonandoff.php">
+        <input type="image" src="/assets/img/power-white.svg"name="off"></input>
+        <input type="hidden" name="off" value="<?php echo $sensor->getID();?>"></input>
+      </form>
+    <?php }?>
+  </div>
+<?php }?>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery-ui-slider-pips.js"></script>
+<script>
+$('#disable').on('click', function() {
+  $("card").children().prop('disabled',true);
+
+});
+</script>
+
+<script>
+
+$("#flat-slider-vertical-1")
+.slider({
+  max: 50,
+  min: 0,
+  range: true,
+  values: [15, 35]
+})
+.slider("pips", {
+  first: "pip",
+  last: "pip"
+});
+
+$("#flat-slider-vertical-1, #flat-slider-vertical-2, #flat-slider-vertical-3")
+.slider({
+  max: 35,
+  min: 0,
+  range: "min",
+  value: 20,
+  slide: function (event, ui) {
+    $("#amount_field").val(ui.value);
+    $("#amountDisp").text(ui.value);
+  },
+  stop: function(event, ui) {
+    sendValue();
+  },
+  orientation: "vertical"
+})
+.slider("pips", {
+  first: "pip",
+  last: "pip"
+})
+.slider("float");
+
+function stest(){
+  alert("godhelpme");
+}
+
+function sendValue() {
+
+  // get values
+  var name = $("#name").val();
+  var value = $("#amount_field").val();
+  $.post("changeTemp.php", {
+    name:name,
+    value: value,
+  }, function (data, status) {
+    console.log(data);
+  });
+
+}
+</script>

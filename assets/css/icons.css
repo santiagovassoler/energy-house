@@ -1,0 +1,40 @@
+
+.background {
+	width: 100%;
+  height: auto;
+  position: relative;
+  /*background: -webkit-linear-gradient(top, rgb(161,219,255) 0%,rgb(203,235,255) 53%,rgb(240,249,255) 100%); /* Chrome10+,Safari5.1+ */
+  background-size: 100% 100%;
+}
+
+.clouds {
+  width: 200px;
+  height: 300px;
+  position: absolute
+}
+
+.cloud1 {
+	top: 80px;
+  z-index: -10;
+  fill: #eee;
+  /* Animation shorthand syntax order: name, duration, timing-function, delay, iteration-count, direction, fill-mode */
+  -webkit-animation: move 20s linear infinite;
+  -moz-animation: move 20s linear infinite;
+  -o-animation: move 20s linear infinite;
+  animation: move 20s linear infinite;
+}
+
+.cloud2 {
+	top: 240px;
+  z-index: -3;
+  fill: #eee;
+  -webkit-animation: move 35s linear 10s infinite backwards;
+  -moz-animation: move 35s linear 10s infinite backwards;
+  -o-animation: move 35s linear 10s infinite backwards;
+  animation: move 35s linear 10s infinite backwards;
+}
+
+@-webkit-keyframes move {
+  from {-webkit-transform: translateX(-400px);}
+  to {-webkit-transform: translateX(1350px);}
+}

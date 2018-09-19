@@ -1,0 +1,190 @@
+<?php require("view/header.phtml");?>
+<style media="screen">
+button{
+  background-color: transparent !important;
+  background: transparent!important;
+  border: 1px solid #fff;
+}
+input[type="submit"]{
+  padding: 9px;
+  background-color: transparent !important;
+  background: transparent!important;
+  border: 1px solid #fff;
+  font-size: 1.6em;
+}
+
+</style>
+<title>Animated Icons</title>
+<div class="card">
+  <h2>Air Temp</h2>
+  <div class="icon eclipse">
+    <div class="moon_eclipse"></div>
+    <div class="sun sun-eclipse">
+      <div class="rays"></div>
+    </div>
+  </div>
+  <div class="value">4&#8451;</div>
+  <form action="download.php">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="1">
+  </form>
+</div>
+<div class="card">
+  <h2>Rain mm</h2>
+  <div class="icon rainy">
+    <div class="cloud"></div>
+    <div class="rain"></div>
+    <div class="lightning when_rainy">
+      <div class="bolt"></div>
+      <div class="bolt"></div>
+    </div>
+  </div>
+  <div class="value">144 mm</div>
+  <form action="download.php?">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="2">
+  </form>
+</div>
+<div class="card">
+  <h2>Wind Speed m/s</h2>
+  <div class="icon windy">
+    <div class="wind"></div>
+    <div class="wind"></div>
+    <div class="wind"></div>
+    <div class="wind"></div>
+  </div>
+  <div class="value">13 m/s</div>
+  <form action="download.php?">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="3">
+  </form>
+</div>
+<div class="card">
+  <h2>Wind Direction</h2>
+  <div class="icon compass">
+    <div class="compass_ring"></div>
+    <div class="compass_key"></div>
+  </div>
+  <div class="value">56&#176;</div>
+  <form action="download.php?">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="4">
+  </form>
+</div>
+<div class="card">
+  <h2>Air Pressure</h2>
+  <div class="icon eclipse">
+    <div class="moon_eclipse"></div>
+    <div class="sun sun-eclipse">
+      <div class="rays"></div>
+    </div>
+  </div>
+  <div class="value">364.5 mbar</div>
+  <form action="download.php?">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="5">
+  </form>
+</div>
+
+<div class="card">
+  <h2>Solar kW/m2</h2>
+  <div class="icon sunny">
+    <div class="sun">
+      <div class="rays"></div>
+    </div>
+  </div>
+  <div class="value">0 kW/2</div>
+  <form action="download.php">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="6">
+  </form>
+</div>
+<div class="card">
+  <h2>Humidity</h2>
+  <div class="icon rainy">
+    <div class="cloud"></div>
+    <div class="rain"></div>
+  </div>
+  <div class="value">97</div>
+  <form action="download.php?">
+    <input type="submit" value="history"/>
+    <input type="hidden" name="sensor" value="7">
+  </form>
+</div>
+<div class="card">
+  <h2>heater</h2>
+  <div class="icon"><img class="img_svg"src="/assets/img/radiator.svg" alt="radiator"></div>
+  <div class="value"><br></div>
+  <div><button id="myBtn">add new</button></div>
+</div>
+
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="icon blue"><img class="img_svg"src="/assets/img/radiator.svg" alt="radiator"></div>
+    <span class="close">&times;</span>
+    <form method="post" action="addsetpoint.php" class="awesome-form">
+      <div class="input-group">
+        <input type="text" id="name" name="name"/>
+        <label>setpoint name:</label>
+      </div>
+      <div class="input-group">
+        <input type="text" id="location" name="location"/>
+        <label>location</label>
+      </div>
+      <input type="submit" onclick="addSensor()" class="withcolor" name"add" value="ADD"></input>
+    </form>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<script>
+$(function(){
+  $('.awesome-form .input-group input').focusout(function(){
+    var val = $(this).val();
+
+    if(val === "") $(this).removeClass('has-value');
+    else $(this).addClass('has-value');
+  });
+});
+</script>
+<script>
+var modal = document.getElementById('myModal');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+function addSensor() {
+  var name = $("#name").val();
+  name = name.trim();
+  var location = $("#location").val();
+  location = location.trim();
+  if (name == "") {
+    alert(" name field is required!");
+  }
+  else if (location == "") {
+    alert("location field is required!");
+  }
+  else {
+    $.post("addsetpoint.php", {
+      name: name,
+      location: location,
+    }, function (data, status) {
+    });
+  }
+}
+</script>

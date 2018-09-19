@@ -1,0 +1,238 @@
+
+#icons{
+  position:absolute;
+  top:200px;
+  left:100px;
+}
+.text-center{
+  text-align:center;
+}
+h1{
+  color: #fff;
+}
+
+p,
+a {
+  color: rgba(255,255,255,0.3);
+  font-size: small;
+}
+p {
+  margin: 1.375em 0;
+}
+
+.sun {
+    top:100px;
+    left: 200px;
+    position: absolute;
+    background: #skyblue;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.6em #fff;
+    animation: spin 10s infinite linear;
+}
+.rays{
+  position: absolute;
+  background: #fff;
+  height: 30px;
+  width: 10px;
+  border-radius: 20%;
+  top: -50px;
+  left: 46px;
+  box-shadow: 0 167px #fff;
+}
+.rays:before,
+.rays:after{
+  content: "";
+  position: absolute;
+  background: #fff;
+  height: 30px;
+  width: 10px;
+  border-radius: 20%;
+  transform: rotate(60deg);
+  transform-origin: 0em 6.2em;
+  box-shadow: 0 165px #fff;
+}
+.rays:before {
+  transform: rotate(120deg);
+}
+
+@keyframes spin {
+ from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.cloud{
+  position: absolute;
+  top: 160px;
+  left: 90px;
+  height: 70px;
+  width: 200px;
+  border-radius: 50px;
+  background: #fff;
+}
+.cloud:after,
+.cloud:before{
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  height: 100px;
+  width: 120px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.cloud-dark{
+  position: absolute;
+  top: 160px;
+  left: 600px;
+  height: 70px;
+  width: 200px;
+  border-radius: 50px;
+  background: skyblue;
+  box-shadow: 0 0 0 0.3em #fff;
+}
+.cloud-dark:after,
+.cloud-dark:before{
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  height: 100px;
+  width: 120px;
+  border-radius: 50%;
+  background: skyblue;
+  box-shadow: 0 0 0 0.3em #fff;
+}
+.cloud-dark:after{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 70px;
+  width: 200px;
+  border-radius: 50px;
+  background: skyblue;
+  box-shadow: 0 0 0 0em #fff;
+}
+.cloud-dark:nth-child(2){
+  z-index: -1;
+  position: absolute;
+  top: 7.0em;
+  left: 43.0em;
+  background: #fff;
+  box-shadow: 0 0 0 0.3em #fff;
+  animation: cloud 5s linear infinite;
+}
+.cloud-dark:nth-child(2):after,
+.cloud-dark:nth-child(2):before{
+  background: #fff;
+}
+@keyframes cloud {
+ 0% {
+   opacity: 0;
+   transform: scale(0.5);}
+   50% {
+   opacity: 0.5;}
+    100% {
+  transform: translateX(-12em)
+    scale(0.5);
+    opacity: 0;}
+}
+.rain{
+  position:absolute;
+  top: 200px;
+}
+.drop{
+  position:absolute;
+  top: 80px;
+  left: 60px;
+  background: #2E7FDF;
+  width: 20px;
+  height: 20px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+ animation: drop 4s linear infinite;
+  box-shadow: 0 2.2em #2E7FDF;
+}
+.drop:after{
+  content: "";
+  position:absolute;
+  top: 10px;
+  left: 30px;
+  background: #2E7FDF;
+  width: 20px;
+  height: 20px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  box-shadow: 0 2.2em #2E7FDF;
+}
+.drop:before{
+  content: "";
+  position:absolute;
+  top: 0px;
+  left: 60px;
+  background: #2E7FDF;
+  width: 20px;
+  height: 20px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  box-shadow: 0 2.2em #2E7FDF;
+}
+
+@keyframes drop {
+ 0% {
+   opacity: 0;}
+   50% {
+   opacity: 0.5;}
+    100% {
+  transform: translate(-1em,1em);
+    opacity: 0;}
+}
+.snow{
+  position:absolute;
+  top: 200px;
+  left: -500px;
+}
+.flake:after{
+  content: '\2744';
+  color: #fff;
+  font-size: 250%;
+  position:absolute;
+  top: 90px;
+  left: 60px;
+  animation: flake 4s linear infinite;
+}
+.flake:before{
+  content: '\2744';
+  color: #fff;
+  font-size: 250%;
+  position:absolute;
+  top: 60px;
+  left: 110px;
+  animation: flake 4s linear infinite;
+}
+.flake:nth-child(2){
+  position: absolute;
+  top: 1.5em;
+  left: -1.0em;
+}
+.flake:nth-child(2):before{
+  position: absolute;
+  font-size: 350%;
+
+}
+.flake:nth-child(1):after{
+  position: absolute;
+  font-size: 350%;
+    top: 0.9em;
+  left: 1.0em;
+}
+
+@keyframes flake {
+ 0% {
+   opacity: 0;}
+   50% {
+   opacity: 0.5;}
+    100% {
+    transform: translate(-0.8em,0.8em)
+    rotate(360deg);
+    opacity: 0;}
+}
